@@ -1,5 +1,6 @@
 package com.dkj.todomanagement.controller;
 
+import com.dkj.todomanagement.model.Todo;
 import com.dkj.todomanagement.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -26,17 +27,23 @@ public class TodoController {
         return "todos-list";
     }
 
-    @RequestMapping(value="/add-todos", method = RequestMethod.GET)
+    @RequestMapping(value="/add-todo", method = RequestMethod.GET)
     public String showAddTodos(ModelMap model){
-        String name = (String) model.get("name");
-        model.put("todos", todoService.retrieveTodos(name));
+        model.addAttribute("todo", new Todo(0, (String) model.get("name"), "Default Desc",
+                new Date(), false));
         return "todo";
     }
 
-    @RequestMapping(value="/add-todos", method = RequestMethod.POST)
-    public String addTodos(ModelMap model, @RequestParam  String desc){
+    @RequestMapping(value="/add-todo", method = RequestMethod.POST)
+    public String addTodos(ModelMap model, Todo todo){
         String name = (String) model.get("name");
-        todoService.addTodo(name,desc,new Date(),false);
+        todoService.addTodo(name,todo.getDesc(),new Date(),false);
+        return "redirect:/list-todos";
+    }
+
+    @RequestMapping(value="/delete-todo", method = RequestMethod.GET)
+    public String deleteTodos(ModelMap model, @RequestParam  int id){
+        todoService.deleteTodo(id);
         return "redirect:/list-todos";
     }
 }
