@@ -16,12 +16,12 @@ public class TodoService {
 
     static {
         todos.add(new Todo(1, "dkj", "Learn Spring MVC", new Date(),
-                false));
-        todos.add(new Todo(2, "dkj", "Learn Struts", new Date(), false));
+                "New"));
+        todos.add(new Todo(2, "dkj", "Learn Struts", new Date(), "New"));
         todos.add(new Todo(3, "dkj", "Learn Hibernate", new Date(),
-                false));
+                "New"));
         todos.add(new Todo(3, "bkj", "Learn hindi ", new Date(),
-                false));
+                "New"));
     }
 
     public List<Todo> retrieveTodos(String user) {
@@ -35,8 +35,8 @@ public class TodoService {
     }
 
     public void addTodo(String name, String desc, Date targetDate,
-                        boolean isDone) {
-        todos.add(new Todo(++todoCount, name, desc, targetDate, isDone));
+                        String status) {
+        todos.add(new Todo(++todoCount, name, desc, targetDate, status));
     }
 
     public void deleteTodo(int id) {

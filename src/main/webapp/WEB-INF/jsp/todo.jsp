@@ -15,6 +15,12 @@
 				<form:label path="desc">Description</form:label>
 				<form:input path="desc" type="text"
 					class="form-control" required="required"/>
+				<form:label path="id">ID</form:label>
+                 <form:input path="id" type="text"
+                    class="form-control" readOnly ="true" required="required"/>
+                 <form:label path="status">Status</form:label>
+                    <form:input path="status" type="text"
+                     class="form-control" readOnly ="true" required="required"/>
 				<form:errors path="desc" cssClass="text-warning"/>
 			</fieldset>
 
